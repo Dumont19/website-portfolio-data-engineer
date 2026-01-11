@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
-// Usando Inter com configuração para display grande
 const inter = Inter({ 
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} font-sans bg-black text-white antialiased selection:bg-white selection:text-black`} suppressHydrationWarning={true}>
+        <SmoothScroll /> 
         {children}
       </body>
     </html>
