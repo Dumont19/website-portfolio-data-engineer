@@ -8,7 +8,7 @@ const stack = [
 
 export default function About() {
   const ref = useRef(null);
-  const videoRef = useRef<HTMLVideoElement>(null); 
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   const { scrollYProgress } = useScroll({ 
     target: ref, 
@@ -25,36 +25,36 @@ export default function About() {
     mouseY.set((clientY - top) / height - 0.5);
   }
 
- 
   const handleMouseEnter = () => {
     if (videoRef.current) {
-        videoRef.current.currentTime = 0; 
-        videoRef.current.play(); 
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
     }
-    mouseX.set(0); mouseY.set(0); 
+    mouseX.set(0); mouseY.set(0);
   };
 
   return (
     <section ref={ref} id="about" className="relative py-24 bg-black overflow-hidden border-t border-white/5">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-      <div className="max-w-1400px mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="max-w-350 mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
         <motion.div 
             initial={{ opacity: 0, scale: 0.9 }} 
             whileInView={{ opacity: 1, scale: 1 }} 
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }} 
             onMouseMove={handleMouseMove} 
-            onMouseEnter={handleMouseEnter} 
+            onMouseEnter={handleMouseEnter}
             onMouseLeave={() => { mouseX.set(0); mouseY.set(0); }} 
-            className="relative group perspective-1000"
+            className="relative group perspective-1000 flex justify-center lg:justify-start"
         >
           <motion.div 
             style={{ 
                 rotateX: useTransform(mouseY, [-0.5, 0.5], [7, -7]), 
-                rotateY: useTransform(mouseX, [-0.5, 0.5], [-7, 7]) 
+                rotateY: useTransform(mouseX, [-0.5, 0.5], [-7, 7]),
+                aspectRatio: '4/5'
             }} 
-            className="relative aspect-4/5 w-full rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl shadow-white/5"
+            className="relative w-full max-w-125 rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 shadow-2xl shadow-white/5"
           >
             <video 
                 ref={videoRef}
@@ -79,6 +79,7 @@ export default function About() {
           </motion.div>
         </motion.div>
 
+        {/* COLUNA DE TEXTO */}
         <div className="relative z-10">
           <motion.div style={{ y }}>
             <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tighter mb-6 leading-none">
