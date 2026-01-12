@@ -34,7 +34,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsIntro(false);
-    }, 10000); 
+    }, 5000); 
     return () => clearTimeout(timer);
   }, []);
 

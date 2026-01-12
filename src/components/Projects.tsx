@@ -38,7 +38,6 @@ function ProjectCard({ project, i, progress, range, targetScale, totalProjects }
     const container = useRef(null);
     const scale = useTransform(progress, range, [1, targetScale]);
     
-    // Verifica se NÃO é o último card para mostrar o aviso de scroll
     const isLast = i === totalProjects - 1;
 
     return (
@@ -47,7 +46,6 @@ function ProjectCard({ project, i, progress, range, targetScale, totalProjects }
                 style={{ scale, backgroundColor: project.color, top: `calc(-5% + ${i * 25}px)` }}
                 className="relative flex flex-col w-full md:w-250 h-[60vh] md:h-[55vh] rounded-3xl border border-white/10 p-6 md:p-12 overflow-hidden shadow-2xl origin-top"
             >
-                {/* Header */}
                 <div className="flex justify-between items-start mb-6 md:mb-8">
                     <div>
                          <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-2 block">
@@ -62,13 +60,11 @@ function ProjectCard({ project, i, progress, range, targetScale, totalProjects }
                     </div>
                 </div>
 
-                {/* Body */}
-                <div className="flex-1 flex flex-col justify-end pb-12 md:pb-0"> {/* Padding extra no mobile p/ scroll não cobrir */}
+                <div className="flex-1 flex flex-col justify-end pb-12 md:pb-0"> 
                     <p className="text-base md:text-2xl text-neutral-300 font-light max-w-2xl mb-8 leading-relaxed">
                         {project.desc}
                     </p>
                     
-                    {/* FOOTER DO CARD */}
                     <div className="flex flex-col md:flex-row md:items-center justify-between border-t border-white/10 pt-6 gap-6 md:gap-0 relative z-20">
                         
                         <div className="flex flex-wrap gap-2 md:gap-4">
@@ -86,8 +82,6 @@ function ProjectCard({ project, i, progress, range, targetScale, totalProjects }
                     </div>
                 </div>
 
-                {/* INDICADOR DE SCROLL (NOVO) */}
-                {/* Só aparece se não for o último card */}
                 {!isLast && (
                     <motion.div 
                         initial={{ opacity: 0, y: -10 }}
@@ -107,7 +101,6 @@ function ProjectCard({ project, i, progress, range, targetScale, totalProjects }
                     </motion.div>
                 )}
 
-                {/* Background Pattern */}
                 <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03] pointer-events-none">
                      <svg width="100%" height="100%">
                         <pattern id={`grid-${i}`} width="40" height="40" patternUnits="userSpaceOnUse">
@@ -152,7 +145,7 @@ export default function Projects() {
                     progress={scrollYProgress}
                     range={[i * 0.25, 1]}
                     targetScale={targetScale}
-                    totalProjects={projects.length} // Passamos o total para saber quem é o último
+                    totalProjects={projects.length}
                 />
             );
         })}
